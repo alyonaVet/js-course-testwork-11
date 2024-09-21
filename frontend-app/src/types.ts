@@ -33,3 +33,21 @@ export interface ValidationError {
 export interface GlobalError {
   error: string;
 }
+
+export interface CategoryCredentials {
+  _id: string;
+  title: string;
+}
+
+export interface ProductCredentials {
+  _id: string;
+  user: string;
+  category: {
+    _id: string;
+    title: string;
+  };
+  title: string;
+  description: string;
+  price: number;
+  image: string | null;
+}
