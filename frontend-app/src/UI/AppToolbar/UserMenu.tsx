@@ -4,6 +4,7 @@ import React, {useState} from 'react';
 import PersonIcon from '@mui/icons-material/Person';
 import {useAppDispatch} from '../../app/hooks';
 import {logout} from '../../features/users/usersThunk';
+import {Link} from 'react-router-dom';
 
 interface Props {
   user: User;
@@ -35,6 +36,7 @@ const UserMenu: React.FC<Props> = ({user}) => {
         {user.name}
       </Button>
       <Menu anchorEl={anchorEl} open={isOpen} keepMounted onClose={handleClose}>
+        <MenuItem component={Link} to="/new-product">Add new product</MenuItem>
         <MenuItem onClick={handleLogout}>Logout</MenuItem>
       </Menu>
     </Box>
