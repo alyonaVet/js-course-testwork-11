@@ -15,6 +15,8 @@ const Register = () => {
   const [registerData, setRegisterData] = useState<RegisterCredentials>({
     username: '',
     password: '',
+    name: '',
+    phoneNumber: '',
   });
 
   const getFieldError = (fieldName: string) => {
@@ -35,7 +37,7 @@ const Register = () => {
       await dispatch(register(registerData)).unwrap();
       navigate('/');
     } catch (error) {
-
+      return {error: error};
     }
   };
 
@@ -85,6 +87,32 @@ const Register = () => {
           onChange={inputChangeHandler}
           error={Boolean(getFieldError('password'))}
           helperText={getFieldError('password')}
+          fullWidth
+        />
+
+        <TextField
+          required
+          label="Name"
+          name="name"
+          type="name"
+          autoComplete="new-name"
+          value={registerData.name}
+          onChange={inputChangeHandler}
+          error={Boolean(getFieldError('name'))}
+          helperText={getFieldError('name')}
+          fullWidth
+        />
+
+        <TextField
+          required
+          label="Phone Number"
+          name="phoneNumber"
+          type="phoneNumber"
+          autoComplete="new-phoneNumber"
+          value={registerData.phoneNumber}
+          onChange={inputChangeHandler}
+          error={Boolean(getFieldError('phoneNumber'))}
+          helperText={getFieldError('phoneNumber')}
           fullWidth
         />
 
