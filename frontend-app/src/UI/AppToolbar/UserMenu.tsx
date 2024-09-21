@@ -32,7 +32,7 @@ const UserMenu: React.FC<Props> = ({user}) => {
         <PersonIcon/>
       </Avatar>
       <Button onClick={handleClick} color="inherit">
-        {user.username}
+        {user.name}
       </Button>
       <Menu anchorEl={anchorEl} open={isOpen} keepMounted onClose={handleClose}>
         <MenuItem onClick={handleLogout}>Logout</MenuItem>
