@@ -27,7 +27,7 @@ const AddProductForm: React.FC<Props> = ({onSubmit, isLoading}) => {
   const user = useAppSelector(selectUser);
   const dispatch = useAppDispatch();
   if (!user) {
-    return (<Typography>You have to be logged in!</Typography>)
+    return (<Typography>You have to be logged in!</Typography>);
   }
   const categories = useAppSelector(selectCategories);
 
@@ -71,8 +71,8 @@ const AddProductForm: React.FC<Props> = ({onSubmit, isLoading}) => {
 
   const submitFormHandler = (event: React.FormEvent) => {
     event.preventDefault();
-    if (!productData.title || !productData.description || !productData.price || !productData.category || !productData.image) {
-      setErrorMessage('All fields should be filled.');
+    if (!productData.title || !productData.description || !productData.price || !productData.category || !productData.image || parseInt(productData.price) < 0) {
+      setErrorMessage('All fields should be filled correct.');
       return;
     }
 
@@ -136,10 +136,12 @@ const AddProductForm: React.FC<Props> = ({onSubmit, isLoading}) => {
           id="price"
           name="price"
           label="Enter Price"
+          type="number"
+
           value={productData.price}
           onChange={inputChangeHandler}
-          error={!!errorMessage && !productData.price}
-          helperText={!!errorMessage && !productData.price ? 'Price is required' : ''}
+          error={!!errorMessage && !productData.price && parseInt(productData.price) < 0}
+          helperText={!!errorMessage && (!productData.price || parseInt(productData.price) < 0)? 'Price is required and must be greater then 0' : ''}
           fullWidth
         />
       </Stack>
@@ -157,7 +159,7 @@ const AddProductForm: React.FC<Props> = ({onSubmit, isLoading}) => {
         />
       </Stack>
       <Stack direction="row" alignItems="center" gap={5}>
-        <InputLabel >Category</InputLabel>
+        <InputLabel>Category</InputLabel>
         <FormControl fullWidth>
           <Select
             id="category"
