@@ -1,12 +1,16 @@
 export interface User {
   _id: string;
   username: string;
+  name: string;
+  phoneNumber: string;
   token: string;
 }
 
 export interface RegisterCredentials {
   username: string;
   password: string;
+  name: string;
+  phoneNumber: string;
 }
 
 export interface LoginCredentials {
