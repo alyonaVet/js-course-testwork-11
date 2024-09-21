@@ -45,11 +45,12 @@ const OneProduct = () => {
             {cardImage && (
               <ImageCardMedia image={cardImage}/>
             )}
+            <Typography variant="body1">{product.category.title}</Typography>
             <Typography variant="h4">{product.title}</Typography>
             <Typography variant="h6">{product.price} KGS</Typography>
             <Typography variant="body1">{product.description}</Typography>
-            {user && (
-              <Button disabled={product.user !== user._id} onClick={() => handleDelete(product._id)}>Delete
+            {user && product.user !== user._id &&(
+              <Button onClick={() => handleDelete(product._id)}>Delete
                 product</Button>
             )}
           </Stack>

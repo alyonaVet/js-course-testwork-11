@@ -51,7 +51,7 @@ productsRouter.get('/:id', async (req, res, next) => {
       return res.status(400).send({ error: 'Product ID is not valid' });
     }
 
-    const product = await Product.findById(req.params.id);
+    const product = await Product.findById(req.params.id).populate('category', 'title');
 
     if (product === null) {
       return res.status(404).send({ error: 'Product not found' });
