@@ -51,7 +51,7 @@ const OneProduct = () => {
             <Typography variant="body1">{product.description}</Typography>
             <Typography variant="body1">{product.user.name}</Typography>
             <Typography variant="body1">{product.user.phoneNumber}</Typography>
-            {user && product.user._id !== user._id &&(
+            {user && product.user._id === user._id &&(
               <Button onClick={() => handleDelete(product._id)}>Delete
                 product</Button>
             )}
