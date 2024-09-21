@@ -49,5 +49,14 @@ export interface ProductCredentials {
   title: string;
   description: string;
   price: number;
+  image: string;
+}
+
+export interface ProductFields {
+  user: string;
+  category: string;
+  title: string;
+  price: string;
+  description: string;
   image: string | null;
 }
