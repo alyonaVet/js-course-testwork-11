@@ -58,7 +58,32 @@ productsRouter.get('/:id', async (req, res, next) => {
     }
     return res.send(product);
   } catch (error) {
-    next(error);
+    return  next(error);
+  }
+});
+
+productsRouter.delete('/:id', auth, async (req: RequestWithUser, res, next) => {
+  try {
+    if (!req.user) {
+      return res.status(401).send({error: 'User not found'});
+    }
+    const product = await Product.findById(req.params.id);
+
+    if (!product) {
+      return res.status(404).send({error: 'Product not found'});
+    }
+
+    if (product.user.toString() !== req.user._id.toString()) {
+      return res.status(403).send({error: 'You dont have permission to delete the task!'});
+    }
+
+    await product.deleteOne();
+
+    return res.send({message: 'Product was deleted successfully.'});
+
+
+  } catch (error) {
+    return next(error);
   }
 });
 
