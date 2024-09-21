@@ -48,17 +48,20 @@ productsRouter.get('/', async (req, res, next) => {
 productsRouter.get('/:id', async (req, res, next) => {
   try {
     if (!mongoose.isValidObjectId(req.params.id)) {
-      return res.status(400).send({ error: 'Product ID is not valid' });
+      return res.status(400).send({error: 'Product ID is not valid'});
     }
 
-    const product = await Product.findById(req.params.id).populate('category', 'title');
+    const product = await Product
+      .findById(req.params.id)
+      .populate('category', 'title')
+      .populate('user', ['name', 'phoneNumber']);
 
     if (product === null) {
-      return res.status(404).send({ error: 'Product not found' });
+      return res.status(404).send({error: 'Product not found'});
     }
     return res.send(product);
   } catch (error) {
-    return  next(error);
+    return next(error);
   }
 });
 
