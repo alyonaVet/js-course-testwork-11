@@ -60,6 +60,7 @@ export const productsSlice = createSlice({
   selectors: {
     selectProducts: (state) => state.products,
     selectProductsFetching: (state) => state.productsFetching,
+    selectProductsCreating: (state) => state.productsCreating,
     selectOneProduct: (state) => state.oneProduct,
     selectOneProductFetching: (state) => state.oneProductFetching,
   }
@@ -71,6 +72,7 @@ export const productsReducer = productsSlice.reducer;
 export const {
   selectProducts,
   selectProductsFetching,
+  selectProductsCreating,
   selectOneProduct,
   selectOneProductFetching
 } = productsSlice.selectors;
