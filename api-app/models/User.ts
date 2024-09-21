@@ -25,14 +25,19 @@ const UserSchema = new Schema<UserFields, UserModel, UserMethods>({
     },
     password: {
       type: String,
-      required:
-        true,
-    }
-    ,
+      required: true,
+    },
+    name: {
+      type: String,
+      required: true,
+    },
+    phoneNumber: {
+      type: String,
+      required: true,
+    },
     token: {
       type: String,
-      required:
-        true,
+      required: true,
     }
   })
 ;
