@@ -30,7 +30,7 @@ const run = async () => {
     }
   );
 
-  const [category1, category2, category3, category4, category5, category6, category7] = await Category.create({
+  const [category1, category2, category3, category4, category5] = await Category.create({
       title: 'Fresh Produce'
     }, {
       title: 'Dairy & Eggs'
