@@ -1,11 +1,13 @@
 import {Box, Typography} from '@mui/material';
 import AddProductForm from './components/AddProductForm';
-import {useAppDispatch} from '../../app/hooks';
+import {useAppDispatch, useAppSelector} from '../../app/hooks';
 import {addProduct, fetchProducts} from './productsThunk';
 import {ProductFields} from '../../types';
+import {selectProductsCreating} from './productsSlice';
 
 const AddProduct = () => {
   const dispatch = useAppDispatch();
+  const productsCreating = useAppSelector(selectProductsCreating);
 
   const submitHandler = async (productData: ProductFields) => {
    await dispatch(addProduct(productData));
@@ -15,7 +17,7 @@ const AddProduct = () => {
   return (
     <Box sx={{m:3}}>
       <Typography variant='h4'>Create new Product</Typography>
-      <AddProductForm onSubmit={submitHandler} isLoading={false} />
+      <AddProductForm onSubmit={submitHandler} isLoading={productsCreating} />
     </Box>
   );
 };
