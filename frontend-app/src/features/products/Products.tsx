@@ -3,7 +3,6 @@ import CategoriesMenu from '../categories/components/CategoryMenu';
 import {useAppDispatch, useAppSelector} from '../../app/hooks';
 import {selectCategories} from '../categories/categoriesSlice';
 import {useEffect} from 'react';
-import {fetchCategories} from '../categories/categoriesThunk';
 import Product from './components/Product';
 import {selectProducts} from './productsSlice';
 import {useNavigate} from 'react-router-dom';
@@ -16,7 +15,6 @@ const Products = () => {
   const products = useAppSelector(selectProducts);
 
   useEffect(() => {
-    dispatch(fetchCategories());
     dispatch(fetchProducts());
   }, [dispatch]);
 
