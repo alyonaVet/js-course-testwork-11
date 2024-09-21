@@ -38,7 +38,7 @@ productsRouter.post('/', auth, imagesUpload.single('image'), async (req: Request
 
 productsRouter.get('/', async (req, res, next) => {
   try {
-    const products = await Product.find();
+    const products = await Product.find().populate('category', 'title');
     return res.send(products);
   } catch (error) {
     next(error);
