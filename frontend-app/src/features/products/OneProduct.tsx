@@ -1,6 +1,6 @@
 import {useEffect} from 'react';
 import {useNavigate, useParams} from 'react-router-dom';
-import {Button, CardMedia, CircularProgress, Stack, styled, Typography} from '@mui/material';
+import {Box, Button, CardMedia, CircularProgress, Stack, styled, Typography} from '@mui/material';
 import {selectOneProduct, selectOneProductFetching} from './productsSlice';
 import {useAppDispatch, useAppSelector} from '../../app/hooks';
 import {deleteProduct, fetchOneProduct, fetchProducts} from './productsThunk';
@@ -13,7 +13,7 @@ const OneProduct = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const product = useAppSelector(selectOneProduct);
-  const isFetching = useAppSelector(selectOneProductFetching);
+  const oneProductFetching = useAppSelector(selectOneProductFetching);
 
   useEffect(() => {
     dispatch(fetchOneProduct(id));
@@ -35,8 +35,10 @@ const OneProduct = () => {
 
   return (
     <Stack mt={5} justifyContent="center" direction={'row'}>
-      {isFetching ? (
-        <CircularProgress/>
+      {oneProductFetching ? (
+        <Box sx={{display: 'flex', justifyContent: 'center', alignItems: 'center', height: '50vh'}}>
+          <CircularProgress/>
+        </Box>
       ) : (
         product && (
           <Stack spacing={2} p={1} textAlign="center" sx={{border: '1px solid #eee', maxWidth: '300px',}}>
@@ -49,8 +51,7 @@ const OneProduct = () => {
             {user && (
               <Button disabled={product.user !== user._id} onClick={() => handleDelete(product._id)}>Delete
                 product</Button>
-            )
-            }
+            )}
           </Stack>
         )
       )}
